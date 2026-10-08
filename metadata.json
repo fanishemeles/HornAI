@@ -1,0 +1,6 @@
+{
+  "name": "Somali & Amharic AI Translation System",
+  "description": "A translation and OCR platform optimized for Somali (Latin) and Amharic (Ethiopic) scripts, with special support for administrative terminology of the Somali Region of Ethiopia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

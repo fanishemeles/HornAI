@@ -1,0 +1,159 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and settings",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier matching the auth UID"
+        },
+        "username": {
+          "type": "string",
+          "description": "Display name of the user"
+        },
+        "email": {
+          "type": "string",
+          "description": "Primary email address of the user"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Selected profile emoji avatar"
+        },
+        "preferences": {
+          "type": "object",
+          "description": "Linguistic and tone preferences"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "user",
+            "admin"
+          ],
+          "description": "System access role"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of creation"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "email",
+        "avatar",
+        "role"
+      ]
+    },
+    "GlossaryItem": {
+      "title": "GlossaryItem",
+      "description": "Custom regional glossary terms shared across the community",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique term ID"
+        },
+        "termSomali": {
+          "type": "string",
+          "description": "Regional Somali word"
+        },
+        "termAmharic": {
+          "type": "string",
+          "description": "Amharic translation or equivalent"
+        },
+        "termEnglish": {
+          "type": "string",
+          "description": "English definition equivalent"
+        },
+        "definition": {
+          "type": "string",
+          "description": "Contextual definition of the word"
+        },
+        "category": {
+          "type": "string",
+          "description": "Linguistic category"
+        },
+        "example": {
+          "type": "string",
+          "description": "Example usage sentence"
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "ID of the user who contributed the term"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when added"
+        }
+      },
+      "required": [
+        "id",
+        "termSomali",
+        "termEnglish",
+        "definition",
+        "category",
+        "createdBy"
+      ]
+    },
+    "HistoryItem": {
+      "title": "HistoryItem",
+      "description": "User translation history record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique history item ID"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Formatted timestamp string"
+        },
+        "sourceLang": {
+          "type": "string",
+          "description": "Language of the source text"
+        },
+        "targetLang": {
+          "type": "string",
+          "description": "Language of the translated text"
+        },
+        "contextType": {
+          "type": "string",
+          "description": "The administrative/thematic context"
+        },
+        "sourceText": {
+          "type": "string",
+          "description": "Original text input"
+        },
+        "translationResult": {
+          "type": "object",
+          "description": "Detailed multi-faceted translation object"
+        }
+      },
+      "required": [
+        "id",
+        "timestamp",
+        "sourceLang",
+        "targetLang",
+        "contextType",
+        "sourceText",
+        "translationResult"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stores user profile data"
+    },
+    "/glossary/{itemId}": {
+      "schema": "GlossaryItem",
+      "description": "Stores custom community terms"
+    },
+    "/users/{userId}/history/{historyId}": {
+      "schema": "HistoryItem",
+      "description": "Stores translation history for each user"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // User Rules
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // Glossary Rules
+    match /glossary/{itemId} {
+      allow read, write: if true;
+    }
+
+    // User History Rules
+    match /users/{userId}/history/{historyId} {
+      allow read, write: if true;
+    }
+  }
+}
